@@ -1,8 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { CategoriasContext } from '../context/CategoriasContext';
+import { RecetasContext } from '../context/RecetasContext';
 
 const Formulario = () => {
   const { categories } = useContext(CategoriasContext);
+  const { searchRecipe } = useContext(RecetasContext);
 
   const [search, setSearch] = useState({
     nombre: '',
@@ -16,8 +18,13 @@ const Formulario = () => {
     });
   };
 
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    searchRecipe(search);
+  };
+
   return (
-    <form action="submit" className="col-12">
+    <form onSubmit={handleOnSubmit} className="col-12">
       <fieldset className="text-center">
         <legend>Busca categorias por Categoria o Ingredientes</legend>
       </fieldset>
