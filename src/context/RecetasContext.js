@@ -4,13 +4,13 @@ export const RecetasContext = createContext();
 
 const RecetasProvider = (props) => {
   const [recipe, setRecipe] = useState([]);
-  const [search, searchRecipe] = useState({
-    nombre: '',
+  const [search, setSearch] = useState({
+    ingrediente: '',
     categoria: '',
   });
 
   return (
-    <RecetasContext.Provider value={{ searchRecipe }}>
+    <RecetasContext.Provider value={{ setSearch }}>
       {props.children}
     </RecetasContext.Provider>
   );

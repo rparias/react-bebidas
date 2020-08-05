@@ -4,23 +4,23 @@ import { RecetasContext } from '../context/RecetasContext';
 
 const Formulario = () => {
   const { categories } = useContext(CategoriasContext);
-  const { searchRecipe } = useContext(RecetasContext);
+  const { setSearch } = useContext(RecetasContext);
 
-  const [search, setSearch] = useState({
-    nombre: '',
+  const [filters, setFilters] = useState({
+    ingrediente: '',
     categoria: '',
   });
 
   const handleOnChange = (e) => {
-    setSearch({
-      ...search,
+    setFilters({
+      ...filters,
       [e.target.name]: e.target.value,
     });
   };
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    searchRecipe(search);
+    setSearch(filters);
   };
 
   return (
@@ -32,7 +32,7 @@ const Formulario = () => {
         <div className="col-md-4">
           <input
             type="text"
-            name="nombre"
+            name="ingrediente"
             className="form-control"
             placeholder="Buscar por Ingrediente"
             onChange={handleOnChange}
