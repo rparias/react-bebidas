@@ -4,7 +4,7 @@ import { RecetasContext } from '../context/RecetasContext';
 
 const Formulario = () => {
   const { categories } = useContext(CategoriasContext);
-  const { setSearch } = useContext(RecetasContext);
+  const { setSearch, setHasData } = useContext(RecetasContext);
 
   const [filters, setFilters] = useState({
     ingrediente: '',
@@ -21,6 +21,7 @@ const Formulario = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     setSearch(filters);
+    setHasData(true);
   };
 
   return (
