@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ModalContext } from '../context/ModalContext';
 
 const Receta = ({ recipe }) => {
+  const { setIdRecipe } = useContext(ModalContext);
+
+  const handleOnClick = () => {
+    setIdRecipe(recipe.idDrink);
+  };
+
   return (
     <div className="col-md-4 mb-3">
       <div className="card">
@@ -11,7 +18,9 @@ const Receta = ({ recipe }) => {
           alt={`Imagen de ${recipe.strDrink}`}
         />
         <div className="card-body">
-          <button className="btn btn-block btn-primary">Ver Receta</button>
+          <button className="btn btn-block btn-primary" onClick={handleOnClick}>
+            Ver Receta
+          </button>
         </div>
       </div>
     </div>
