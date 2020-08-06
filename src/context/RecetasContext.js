@@ -4,7 +4,7 @@ import axios from 'axios';
 export const RecetasContext = createContext();
 
 const RecetasProvider = (props) => {
-  const [recipe, setRecipe] = useState([]);
+  const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState({
     ingrediente: '',
     categoria: '',
@@ -18,14 +18,14 @@ const RecetasProvider = (props) => {
       const getRecipes = async () => {
         const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingrediente}&c=${categoria}`;
         const recipes = await axios.get(url);
-        setRecipe(recipes.data.drinks);
+        setRecipes(recipes.data.drinks);
       };
       getRecipes();
     }
   }, [search]);
 
   return (
-    <RecetasContext.Provider value={{ setSearch, setHasData }}>
+    <RecetasContext.Provider value={{ recipes, setSearch, setHasData }}>
       {props.children}
     </RecetasContext.Provider>
   );
