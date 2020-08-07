@@ -25,7 +25,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Receta = ({ recipe }) => {
-  const { setIdRecipe } = useContext(ModalContext);
+  const { recipeDetail, setIdRecipe, setRecipeDetail } = useContext(
+    ModalContext
+  );
 
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
@@ -39,6 +41,7 @@ const Receta = ({ recipe }) => {
   const handleClose = () => {
     setOpen(false);
     setIdRecipe(null);
+    setRecipeDetail({});
   };
 
   const handleOnClick = () => {
@@ -61,7 +64,14 @@ const Receta = ({ recipe }) => {
           </button>
           <Modal open={open} onClose={handleClose}>
             <div style={modalStyle} className={classes.paper}>
-              <h1>Desde Modal</h1>
+              <h2>{recipeDetail.strDrink}</h2>
+              <h3 className="mt-4">Instrucciones</h3>
+              <p>{recipeDetail.strInstructions}</p>
+              <img
+                src={recipeDetail.strDrinkThumb}
+                alt="Drink Thumb"
+                className="img-fluid"
+              />
             </div>
           </Modal>
         </div>
